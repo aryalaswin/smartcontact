@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<section>
+
+<div class="card mr-3 ml-3" >
+<div class="card-body"th:if="${contact}">`
+<div class="container text-center">
+    <img style="height:400px;weigth:400px;object-fit:cover;border-radius: 50%;border: 1px solid red" th:src="@{'/img/'+${contact.image}}" alt="" />
+<h2 th:text="${contact.name}"></h2>
+</div>
+</div>
+<h3 th:unless="${contact}">You doesnot have permission to view this</h3>
+</div>
+
+</section>
+</body>
+</html>

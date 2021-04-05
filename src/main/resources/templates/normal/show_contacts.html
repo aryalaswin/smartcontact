@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<section><table class="table ">
+  <thead>
+    <tr>
+    <th>Photo</th>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Second Name</th>
+      <th scope="col">Work</th>
+       <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+         <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="c: ${contact}">
+    <td>
+    <img style="height:40px;weigth:40px;object-fit:cover;border-radius: 50%;border: 1px solid red" th:src="@{'/img/'+${c.image}}" alt="" />
+    </td>
+      <td th:text="${c.cid}"></td>
+       <td th:text="${c.name}"></td>
+        <td th:text="${c.secondName}"></td>
+         <td th:text="${c.work}"></td>
+          <td >
+          <a th:href="@{'/user/'+${c.cid}+'/contact'}">
+          <span th:text="${c.email}"></span></a></td>
+           <td th:text="${c.phone}"></td>
+            <td >
+           <button class="btn btn-danger btn-sm" th:onclick="|deleteContact(${c.cid})|">Delete</button><br>
+            <form method="post" th:action="'/user/update-contact/'+${c.cid}"> <button type="submit" class="btn btn-danger btn-sm">Update</button></form>
+            </td>
+     
+    </tr>
+   
+  </tbody>
+</table>
+<nav aria-label="Page navigation example" >
+  <ul class="pagination">
+    <li class="page-item" th:if="${currentPage!=0}"><a class="page-link" th:href="@{'/user/show_contacts/'+${currentPage-1}}">Previous</a></li>
+    <li th:each="i: ${#numbers.sequence(1,totalPages)}" th:classappend="${currentPage==i-1?'active':''}" class="page-item"><a class="page-link" th:href="@{'/user/show_contacts/'+${i-1}}"><span th:text="${i}"></span></a></li>
+   
+    <li  th:if="${currentPage+1 !=totalPages}" class="page-item"><a class="page-link" th:href="@{'/user/show_contacts/'+${currentPage+1}}">Next</a></li>
+  </ul>
+</nav>
+</section>
+</body>
+</html>

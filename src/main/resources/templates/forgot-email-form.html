@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Forgot Email Form</h1>
+<section>
+
+
+<div id="login">
+      
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" th:action="@{/sendotp}" action="#" method="post">
+                            <h3 class="text-center text-info">Forgot Password</h3>
+                             <div th:if="${session.message}" class="container">
+   <div  class="alert alert-danger text-center"role="alert">
+  <span th:text="${session.message}"></span>
+</div>
+<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+   </div>
+                            
+                            <div class="form-group">
+                                <label for="email" class="text-info">enter your registered  email:</label><br>
+                                <input required type="email" name="email" id="email" class="form-control">
+                            </div>
+                            <div class="form-group text-center">
+                                <input  type="submit" name="submit" class="btn btn-warning btn-md" value="Send OTP">
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
